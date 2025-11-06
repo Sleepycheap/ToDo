@@ -11,7 +11,13 @@
 } */
 
 #title-bar {
-  border: 2px solid red;
+  display: flex;
+  grid-column-start: left;
+  grid-column-end: right;
+  background-color: #212529;
+  color: white;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 #container {
@@ -42,6 +48,7 @@
   grid-row-start: middle;
   grid-row-end: ft-start;
   grid-column-end: content;
+  background-color: gray;
 }
 
 ul {
