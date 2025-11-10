@@ -11,6 +11,7 @@
 }
 
 #title-bar {
+  border: 2px solid white;
   display: flex;
   grid-column-start: left;
   grid-column-end: right;
@@ -19,6 +20,13 @@
   /* justify-content: center; */
   align-items: center;
 }
+
+#title {
+  padding: 125px;
+  font-size: 60px;
+}
+
+
 
 #container {
   /* position: absolute; */
@@ -32,23 +40,24 @@
   grid-row-start: middle;
   grid-row-end: end;
   grid-column-start: content;
-  border: 2px solid blue;
 }
 
 #info-column {
   display: grid;
   grid-template-rows: [info-start] 1fr [info-mid] 1fr [info-end];
-  border: 2px solid pink;
   grid-row-start: middle;
   grid-row-end: end;
   grid-column-end: content;
-  /* background-color: gray; */
+  background-color: lightgray;
 }
 
-.inbox {
-  list-style-image: url('./assets/inbox.svg');
-  border: 2px solid lime;
-}
+/* button.inbox::before {
+  content: url('./assets/inbox.svg');
+  display: block;
+  position: absolute;
+  top: 130px;
+} */
+
 
 #options-list {
   display: grid;
@@ -58,22 +67,38 @@
 }
 
 #projects-section {
+  /* border: 2px solid green; */
   display: grid;
+  grid-template-rows: [pr-start] 75px [pr-content] 5fr [pr-end];
 }
 
 p {
   /* border-bottom: 1px solid red; */
   font-size: x-large;
   position: absolute;
-  left: 30px;
+  /* left: 30px; */
 
 }
 
 div#projects-title {
-  border-bottom: 1px solid black;
-  width: 100%;
-  height: 70px;
+  /* border-bottom: 2px solid goldenrod; */
+  width: 75%;
+  margin-inline: auto;
+  height: 60px;
   font-size: small;
+  /* padding-top: 30px; */
+}
+
+p {
+  position: relative;
+  bottom: 20px;
+  border-bottom: 2px solid goldenrod;
+  margin-inline: auto;
+  width: 90%;
+}
+
+#projects {
+  border: 2px solid red;
 }
 
 .list{
@@ -82,10 +107,12 @@ div#projects-title {
   /* width: 100%; */
   /* height: 20px; */
   /* padding: 16px 20px; */
-  background-color: lightgray;
-  border: none;
+  background-color: white;
+  /* border-right: 2px solid goldenrod; */
 }
 
-button.list {
-  
+button {
+  border: none;
+  border-right: 8px solid goldenrod;
 }
+
