@@ -11,7 +11,7 @@
 }
 
 #title-bar {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   display: flex;
   grid-column-start: left;
   grid-column-end: right;
@@ -42,6 +42,12 @@
   grid-column-start: content;
 }
 
+#content {
+  display: grid;
+  grid-template-columns: [content-left] 1fr [mid] 4fr [content-right] ;
+  grid-template-rows: [content-start] 100px [content-mid] 620px [content-end] ;
+}
+
 #info-column {
   display: grid;
   grid-template-rows: [info-start] 1fr [info-mid] 1fr [info-end];
@@ -50,13 +56,6 @@
   grid-column-end: content;
   background-color: lightgray;
 }
-
-/* button.inbox::before {
-  content: url('./assets/inbox.svg');
-  display: block;
-  position: absolute;
-  top: 130px;
-} */
 
 
 #options-list {
@@ -98,8 +97,26 @@ p {
 }
 
 #projects {
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
+
+.project-add {
+  height: 50px;
+  width: 100%;
+  /* border: 2px solid blue; */
+}
+
+.add {
+  border: none;
+  background-color: lightgray;
+  position: absolute;
+  left: 50px;
+  height: 50px;
+  width: 200px;
+  justify-items:  space-between;
+  cursor: pointer;
+}
+
 
 .list{
   display: grid;
@@ -111,8 +128,20 @@ p {
   /* border-right: 2px solid goldenrod; */
 }
 
+
 button {
   border: none;
   border-right: 8px solid goldenrod;
+  cursor: pointer;
 }
 
+button:hover {
+  background-color: whitesmoke;
+  border: none;
+}
+
+.fa-solid {
+  position: absolute;
+  /* bottom: 300px; */
+  left: 40px;
+}
