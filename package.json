@@ -20,6 +20,7 @@
     "webpack-dev-server": "^5.2.2"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8"
   }

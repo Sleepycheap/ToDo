@@ -11,12 +11,29 @@
 <body>
   <div id="container">
     <div id="title-bar">
-      <div id="title-pic"></div>
+      <i class="fa-solid fa-table-list"></i>
       <div id="title">ToDo List</div>
     </div>
 
-    <div id="task-content">
-      <div id="content"></div>
+    <div id="task-content" class="content">
+      <h1 id="content-title">Inbox</h1>
+      <button type="button" id="task-add"><i class="fa-solid fa-plus"></i>Add Task</button>
+
+      <div id="created-tasks">
+        <div id="task-card">
+          <button type="button" class="clear-task"></button>
+          <p class="task-p">Test Task</p>
+        </div>
+      </div>
+
+      <div id="task-div">
+        <form id="create-task">
+          <label for="task"></label>
+          <input type="text" id="task" name="task">
+        </form>
+        <button form="create-task" type="submit" class="create">Add</button>
+        <button form="create-task" type="reset" class="cancel">Cancel</button>
+      </div>
     </div>
 
     <div id="info-column">
@@ -29,13 +46,9 @@
       </div>
 
       <div id="projects-section">
-        <div id="projects-title">
-          <p>Projects</p>
-        </div>
+        <h1 class="project-title">Projects</h1>
         <div id="projects">
-          <div class="project-add">
-            <button type="button" class="add"><i class="fa-solid fa-plus"></i>Add Project</button>
-          </div>
+          <button type="button" class="add"><i class="fa-solid fa-plus" id="project-add"></i>Add Project</button>
         </div>
       </div>
     </div>

@@ -1,3 +1,7 @@
+* {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
 #container {
   position: absolute;
   height: 100%;
@@ -11,13 +15,11 @@
 }
 
 #title-bar {
-  /* border: 2px solid white; */
   display: flex;
   grid-column-start: left;
   grid-column-end: right;
-  background-color: #212529;
+  background: linear-gradient(to right, #212529, #36454f, #71797E);
   color: white;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -26,11 +28,7 @@
   font-size: 60px;
 }
 
-
-
 #container {
-  /* position: absolute; */
-  /* width: 100%; */
   display: grid;
   grid-template-rows: [top] 100px [middle] 80vh [ft-start] 1fr [end];
   grid-template-columns: [left] 15vw [content] 85vw [right] ;
@@ -42,53 +40,44 @@
   grid-column-start: content;
 }
 
-#content {
+.content {
   display: grid;
-  grid-template-columns: [content-left] 1fr [mid] 4fr [content-right] ;
-  grid-template-rows: [content-start] 100px [content-mid] 620px [content-end] ;
+  grid-template-columns: [content-left] 1fr [mid] 4fr [content-right] 1fr [side-end];
+  grid-template-rows: [content-start] 100px [add-task] 100px [content-mid] 700px [content-end];
 }
 
 #info-column {
   display: grid;
-  grid-template-rows: [info-start] 1fr [info-mid] 1fr [info-end];
+  grid-template-rows: [info-start] 400px [info-mid] 50px [info-end];
   grid-row-start: middle;
   grid-row-end: end;
   grid-column-end: content;
   background-color: lightgray;
 }
 
-
 #options-list {
   display: grid;
   padding: 20px;
   gap: 20px;
-  /* border: 2px solid red; */
 }
 
-#projects-section {
-  /* border: 2px solid green; */
-  display: grid;
-  grid-template-rows: [pr-start] 75px [pr-content] 5fr [pr-end];
-}
-
+/* h1#content-title {
+  color: white;
+} */
+/* 
 p {
-  /* border-bottom: 1px solid red; */
   font-size: x-large;
   position: absolute;
-  /* left: 30px; */
+} */
 
+#projects {
+  grid-row-start: info-end;
+  width: 50%;
+  margin: 0 auto;
 }
 
-div#projects-title {
-  /* border-bottom: 2px solid goldenrod; */
-  width: 75%;
-  margin-inline: auto;
-  height: 60px;
-  font-size: small;
-  /* padding-top: 30px; */
-}
 
-p {
+.project-title {
   position: relative;
   bottom: 20px;
   border-bottom: 2px solid goldenrod;
@@ -96,20 +85,29 @@ p {
   width: 90%;
 }
 
-#projects {
-  /* border: 2px solid red; */
+#content-title {
+  grid-column-start: mid;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
-.project-add {
-  height: 50px;
-  width: 100%;
-  /* border: 2px solid blue; */
+#task-add {
+  grid-row-start: add-task;
+  background-color: gray;
+  grid-column-start: mid;
+  height: 60px;
+  border: none;
+  width: 325px;
+  justify-self: center;
+  font-size: 40px;
 }
 
 .add {
   border: none;
   background-color: lightgray;
   position: absolute;
+  top: 560px;
   left: 50px;
   height: 50px;
   width: 200px;
@@ -121,15 +119,11 @@ p {
 .list{
   display: grid;
   grid-template-rows: repeat(5, 10px);
-  /* width: 100%; */
-  /* height: 20px; */
-  /* padding: 16px 20px; */
   background-color: white;
-  /* border-right: 2px solid goldenrod; */
 }
 
 
-button {
+button.list {
   border: none;
   border-right: 8px solid goldenrod;
   cursor: pointer;
@@ -138,10 +132,102 @@ button {
 button:hover {
   background-color: whitesmoke;
   border: none;
+  box-shadow: 7px 7px #848884;
 }
 
-.fa-solid {
+#task-add:hover {
+  background-color: lightgray;
+  box-shadow: 7px 7px whitesmoke;
+}
+
+#project-add {
   position: absolute;
-  /* bottom: 300px; */
   left: 40px;
+}
+
+.fa-table-list {
+  font-size: 50px;
+  position: absolute;
+  left: 46px;
+}
+
+.fa-plus {
+  position: absolute;
+  left: 950px;
+}
+
+#task-div {
+  /* border: 1px solid lightgray; */
+  display: none;
+  grid-template-columns: [input-start] 343px [break] 20px [break-end] 343px [task-end];
+  grid-template-rows: [input-top] 40px [input-bottom] 20px [button-start] 40px [button-end] ; 
+  grid-row-start: content-mid;
+  height: 100px;
+  grid-column-start: mid;
+  justify-self: center;
+}
+
+input {
+  border: 1px solid black;
+  box-shadow: 2px 2px;
+  grid-column-start: input-start;
+  width: 700px;
+  height: 40px;
+}
+
+.create {
+  grid-column-start: input-start;
+  grid-row-start: button-start;
+  width: 343px;
+  background-color: lightgreen;
+}
+
+.cancel {
+  grid-column-start: break-end;
+  grid-column-end: task-end;
+  grid-row-start: button-start;
+  background-color: #aa4a44;
+}
+
+.hide {
+  display: none;
+}
+
+#created-tasks {
+  grid-row-start: content-mid;
+  grid-column-start: mid;
+  justify-self: center;
+  list-style: none;
+  width: 400px;
+}
+
+#task-card {
+  display: flex;
+  /* border: 2px solid black; */
+  height: 50px;
+  /* align-content: center; */
+}
+
+.task-p {
+  /* margin-left: auto; */
+  margin-left: 140px;
+}
+
+.clear-task {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  align-self: center;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#task-card:hover {
+  background-color: lightgray;
+  box-shadow: 7px 7px whitesmoke;
+}
+
+#task-add:hover {
+  background-color: lightgray;
+  box-shadow: 7px 7px whitesmoke;
 }
