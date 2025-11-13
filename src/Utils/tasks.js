@@ -21,7 +21,7 @@ export const getTaskName = () => {
     created.id = 'created-tasks';
     const card = document.createElement('div');
     card.id = 'task-card';
-    
+    localStorage.setItem("task", taskName);
   })
 }
 
@@ -30,6 +30,6 @@ export const clearTask = () => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     const card = document.querySelector('#task-card');
-    card.classList.add = 'hide';
+    card.style.display = 'none';
   })
 }
