@@ -101,6 +101,7 @@ p {
   width: 325px;
   justify-self: center;
   font-size: 40px;
+  display: grid;
 }
 
 .add {
@@ -263,4 +264,8 @@ li {
 li:hover {
   background-color: lightgrey;
   box-shadow: 7px 7px whitesmoke;
+}
+
+#task-div {
+  display: none;
 }
