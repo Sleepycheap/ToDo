@@ -28,9 +28,9 @@
 
       <div id="created-tasks">
         <ul id="task-list">
-          <li id="task-card"><button type="button" class="clear-task"></button>
+          <!-- <li id="task-card"><button type="button" class="clear-task"></button>
             <p class="task-p">Test Task</p>
-          </li>
+          </li> -->
           <!-- <li id="task-card">
             <button type="button" class="clear-task"></button>
             <p class="task-p">Test Test</p>
@@ -63,6 +63,11 @@
         <div id="projects">
           <button type="button" class="add"><i class="fa-solid fa-plus" id="project-add"></i>Add Project</button>
         </div>
+        <form id="create-project">
+          <label for="project">Project Name:</label>
+          <input type="text" id="project-name" name="projectName" required>
+          <input type="submit" value="Add" class="p-add">
+        </form>
       </div>
     </div>
   </div>

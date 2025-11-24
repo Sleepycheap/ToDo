@@ -19,7 +19,27 @@ export const createTask = () => {
 }
 
 export const loadPage = () => {
-
+  const ul = document.querySelector('#task-list');
+  const tasks = localStorage;
+  for (let i = 0; i < tasks.length; i++) {
+    const li = document.createElement('li');
+    li.id = 'task-card';
+    ul.appendChild(li);
+    const button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.classList.add('clear-task');
+    li.appendChild(button);
+    const p = document.createElement('p');
+    p.classList.add('task-p');
+    const taskName = localStorage.key(i);
+    const value = JSON.parse(taskName)
+    p.textContent = value;
+    li.appendChild(p);
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      clearTask(value, ul, li);
+    })
+  }
 }
 
 const tasks = ['Test Task'];
@@ -34,13 +54,14 @@ export const getTaskName = () => {
   const add = document.querySelector('.create');
   const cancel = document.querySelector('.cancel');
   const form = document.querySelector('#task-div');
-  const taskList = document.querySelector('ul');
+  const ul = document.querySelector('ul');
   const li = document.createElement('li');
-  if (tasks.includes(taskName)) {
+  // console.log(`Storage: ${Object.keys(localStorage)}`);
+  if (localStorage.getItem(JSON.stringify(taskName))) {
     console.log('task already created');
   } else {
     li.id = 'task-card';
-    taskList.appendChild(li);
+    ul.appendChild(li);
     const button = document.createElement('button');
     button.setAttribute('type', 'button');
     button.classList.add('clear-task');
@@ -49,7 +70,13 @@ export const getTaskName = () => {
     p.classList.add('task-p');
     p.textContent = taskName;
     li.appendChild(p);
-    tasks.push(taskName);
+    localStorage.setItem(JSON.stringify(taskName), JSON.stringify(taskName));
+    const value = taskName;
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      clearTask(value, ul, li);
+    })
+    // tasks.push(taskName);
   }
   form.style.display = 'none';
   const card = document.querySelector('#task-card');
@@ -58,10 +85,16 @@ export const getTaskName = () => {
   taskAdd.style.display = 'grid';
 }
 
-export const clearTask = (button) => {
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    const card = document.querySelector('#task-card');
-    card.style.display = 'none';
-  })
+export const clearTask = (value, ul, li) => {
+  if (localStorage.getItem(JSON.stringify(value)))
+  {
+    localStorage.removeItem(JSON.stringify(value));
+    ul.removeChild(li);
+    console.log(`Storage: ${Object.keys(localStorage)}`);
+    
+  }
+}
+
+export const createProject = () => {
+  
 }

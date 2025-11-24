@@ -105,6 +105,7 @@ p {
 }
 
 .add {
+  display: grid;
   border: none;
   background-color: lightgray;
   position: absolute;
@@ -116,6 +117,11 @@ p {
   cursor: pointer;
 }
 
+#project-add {
+  display: grid;
+  position: absolute;
+  left: 40px;
+}
 
 .list{
   display: grid;
@@ -141,10 +147,6 @@ button:hover {
   box-shadow: 7px 7px whitesmoke;
 }
 
-#project-add {
-  position: absolute;
-  left: 40px;
-}
 
 .fa-table-list {
   font-size: 50px;
@@ -167,7 +169,7 @@ button:hover {
   justify-self: center;
 }
 
-input {
+input#task {
   border: 1px solid black;
   box-shadow: 2px 2px;
   grid-column-start: input-start;
@@ -268,4 +270,19 @@ li:hover {
 
 #task-div {
   display: none;
+}
+
+#create-project {
+  display: none;
+  /* border: 2px solid black; */
+  /* gap: 20px; */
+}
+
+.p-add {
+  position: relative;
+  width: 100px;
+  /* bottom: px; */
+  top: 2px;
+  justify-self: center;
+  background-color: #006241;
 }
