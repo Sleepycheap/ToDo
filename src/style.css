@@ -43,7 +43,7 @@
 .content {
   display: grid;
   grid-template-columns: [content-left] 1fr [mid] 4fr [content-right] 1fr [side-end];
-  grid-template-rows: [content-start] 100px [add-task] 100px [content-mid] 700px [content-end];
+  grid-template-rows: [content-start] 100px [add-task] 100px [content-mid] 600px [content-end];
 }
 
 #info-column {
@@ -74,6 +74,7 @@ p {
   grid-row-start: info-end;
   width: 50%;
   margin: 0 auto;
+  height: 30vh;
 }
 
 
@@ -285,4 +286,32 @@ li:hover {
   top: 2px;
   justify-self: center;
   background-color: #006241;
+}
+
+/* #projects-section {
+  
+} */
+
+ul#projects-list {
+  display: block;
+  position: relative;
+  bottom: 240px;
+  justify-self: center;
+  height: 280px;
+  /* border: 2px solid black; */
+  width: 200px;
+  /* padding-bottom: 10px; */
+}
+
+li.project-name {
+  background-color: white;
+  border-right: 8px solid goldenrod;
+  width: 100%;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+li.project-name:hover {
+  background-color: lightgrey;
+  box-shadow: 3px 3px whitesmoke;
 }

@@ -96,5 +96,17 @@ export const clearTask = (value, ul, li) => {
 }
 
 export const createProject = () => {
-  
+  const add = document.querySelector('.add');
+  const create = document.querySelector('#create-project');
+  add.style.display = 'none';
+  create.style.display = 'grid';
+  const pAdd = document.querySelector('.p-add');
+  pAdd.addEventListener('click', (e) => {
+    e.preventDefault();
+    saveProject();
+  })
+}
+
+export const saveProject = () => {
+  const value = document.querySelector('#project-name').value;
 }
