@@ -8,14 +8,23 @@ export const createTask = () => {
     taskAdd.style.display = 'none';
     const tasks = document.querySelector('#task-list');
     tasks.style.display = 'none';
-    const taskDiv = document.querySelector('#task-div');
-    taskDiv.style.display = 'grid';
-    const add = document.querySelector('.create');
-    add.addEventListener('click', (e) => {
-      e.preventDefault();
-      getTaskName();
+    const newWin = document.querySelector('#new-window');
+    newWin.style.display = 'block';
+    const taskContent = document.querySelector('#task-content');
+    const options = document.querySelector('#options-list');
+    const projects = document.querySelector('#projects');
+    const pTitle = document.querySelector('.project-title');
+    projects.style.filter = 'Blur(10px)';
+    pTitle.style.filter = 'Blur(10px)';
+    taskContent.style.filter = 'Blur(10px)';
+    options.style.filter = 'Blur(10px)';
+    container.style.filter = 'Blur(10px)';
+    // const add = document.querySelector('.create');
+    // add.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   getTaskName();
     })
-  })
+  // })
 }
 
 export const loadPage = () => {
@@ -97,16 +106,27 @@ export const clearTask = (value, ul, li) => {
 
 export const createProject = () => {
   const add = document.querySelector('.add');
+  const createP = document.querySelector('.createP');
   const create = document.querySelector('#create-project');
-  add.style.display = 'none';
-  create.style.display = 'grid';
-  const pAdd = document.querySelector('.p-add');
-  pAdd.addEventListener('click', (e) => {
+  add.addEventListener('click', (e) => {
     e.preventDefault();
-    saveProject();
+    add.style.display = 'none';
+    create.style.display = 'grid';
+    createP.addEventListener('click', (e) => {
+      e.preventDefault();
+      saveProject();
+    })
   })
 }
 
 export const saveProject = () => {
-  const value = document.querySelector('#project-name').value;
+ console.log('test');
+  // const add = document.querySelector('.add');
+  // add.style.display = 'none';
+  // const create = document.querySelector('#create-project');
+  // create.style.display = 'grid';
+  // create.addEventListener('click', (e) => {
+  //   e.preventDefault();
+    
+  // })
 }

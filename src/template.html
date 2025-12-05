@@ -10,6 +10,32 @@
 
 <body>
   <div id="container">
+
+    <div id="new-window">
+      <form id="create-form">
+        <div class="create-header">
+          <h2 class="create-heading">Create a new task</h2>
+          <div class="create-close">x</div>
+        </div>
+
+        <div class="create-content">
+          <div class="create-entry">
+            <textarea class="create-title" placeholder="Title: Wash Dishes" name="new-todo" maxlength="40"
+              required></textarea>
+            <textarea class="create-body" placeholder="Description: Check all rooms for dishes, hand wash etc."
+              name="new-todo"></textarea>
+            <div class="create-date">
+              <div class="create-due">Due Date:</div>
+              <input type="date" class="create-due_input" name="new-todo" required>
+            </div>
+          </div>
+          <input type="submit" class="create-new_todo-submit" value="Add To Do">
+        </div>
+      </form>
+
+    </div>
+
+
     <div id="title-bar">
       <i class="fa-solid fa-table-list"></i>
       <div id="title">ToDo List</div>
@@ -61,22 +87,30 @@
       <div id="projects-section">
         <h1 class="project-title">Projects</h1>
         <div id="projects">
-          <button type="button" class="add"><i class="fa-solid fa-plus" id="project-add"></i>Add Project</button>
+          <!-- <button type="button" class="add"><i class="fa-solid fa-plus" id="project-add"></i>Add Project</button> -->
         </div>
-
-        <ul id="projects-list">
-          <!-- <li class="project-name">Project Name</li>
-          <li class="project-name">Project 2</li>
-          <li class="project-name">Project 3</li> -->
-        </ul>
 
         <form id="create-project">
           <label for="project">Project Name:</label>
           <input type="text" id="project-name" name="projectName" required>
-          <input type="submit" value="Add" class="p-add">
+          <button form="create-project" type="submit" class="createP">Add</button>
         </form>
       </div>
     </div>
+
+    <!-- <div id="project-window">
+      <form id="project-form">
+        <label for="p-name"></label>
+        <input type="text" id="p-name" name="p-name">
+        <label for="description"></label>
+        <input type="text" id="description" name="description">
+        <label for="dueDate"></label>
+        <input type="date" id="dueDate" name="dueDate">
+        <button form="project-form" type="submit" class="plist-create">Add</button>
+      </form>
+    </div> -->
+
+
   </div>
 </body>
 

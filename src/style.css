@@ -3,6 +3,9 @@
 }
 
 #container {
+  display: grid;
+  grid-template-rows: [top] 100px [middle] 80vh [ft-start] 1fr [end];
+  grid-template-columns: [left] 15vw [content] 85vw [right] ;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -12,6 +15,8 @@
   left: 0;
   padding: 0;
   background-color: gray;
+  /* filter: blur(10px); */
+  /* z-index: 1; */
 }
 
 #title-bar {
@@ -28,22 +33,24 @@
   font-size: 60px;
 }
 
-#container {
+/* #container {
   display: grid;
   grid-template-rows: [top] 100px [middle] 80vh [ft-start] 1fr [end];
   grid-template-columns: [left] 15vw [content] 85vw [right] ;
-}
+} */
 
 #task-content {
   grid-row-start: middle;
   grid-row-end: end;
   grid-column-start: content;
+  /* filter: blur(10px); */
 }
 
 .content {
   display: grid;
   grid-template-columns: [content-left] 1fr [mid] 4fr [content-right] 1fr [side-end];
   grid-template-rows: [content-start] 100px [add-task] 100px [content-mid] 600px [content-end];
+  /* filter: blur(10px); */
 }
 
 #info-column {
@@ -59,31 +66,25 @@
   display: grid;
   padding: 20px;
   gap: 20px;
+  /* filter: blur(10px); */
 }
-
-/* h1#content-title {
-  color: white;
-} */
-/* 
-p {
-  font-size: x-large;
-  position: absolute;
-} */
 
 #projects {
   grid-row-start: info-end;
   width: 50%;
   margin: 0 auto;
-  height: 30vh;
+  /* filter: blur(10px); */
+  /* height: 30vh; */
 }
 
-
 .project-title {
-  position: relative;
-  bottom: 20px;
+  position: absolute;
+  top: 475px;
+  grid-row-start: info-mid;
   border-bottom: 2px solid goldenrod;
-  margin-inline: auto;
-  width: 90%;
+  /* margin-inline: auto; */
+  width: 10%;
+  /* filter: blur(10px); */
 }
 
 #content-title {
@@ -130,7 +131,6 @@ p {
   background-color: white;
 }
 
-
 button.list {
   border: none;
   border-right: 8px solid goldenrod;
@@ -147,7 +147,6 @@ button:hover {
   background-color: lightgray;
   box-shadow: 7px 7px whitesmoke;
 }
-
 
 .fa-table-list {
   font-size: 50px;
@@ -199,13 +198,11 @@ input#task {
 #created-tasks {
   padding: 0;
   margin: 0;
-
   display: flex;
   gap: 10px;
   grid-row-start: content-mid;
   grid-column-start: mid;
-  justify-self: center;
-  /* border: 2px solid black; */
+  justify-self: center; 
   width: 600px;
 }
 
@@ -275,11 +272,11 @@ li:hover {
 
 #create-project {
   display: none;
-  /* border: 2px solid black; */
+  grid-row-start: project-start;
   /* gap: 20px; */
 }
 
-.p-add {
+.createP {
   position: relative;
   width: 100px;
   /* bottom: px; */
@@ -288,9 +285,11 @@ li:hover {
   background-color: #006241;
 }
 
-/* #projects-section {
-  
-} */
+#projects-section {
+ /* border: 2px solid black; */
+ display: grid;
+ grid-template-rows: [project-title] 50px [project-start] 125px [project-mid];
+}
 
 ul#projects-list {
   display: block;
@@ -315,3 +314,113 @@ li.project-name:hover {
   background-color: lightgrey;
   box-shadow: 3px 3px whitesmoke;
 }
+
+#new-window {
+  display: none;
+  position: absolute;
+  /* border: 2px solid black; */
+  right: 480px;
+  top: 30vh;
+  height: 400px;
+  width: 600px;
+  background-color: goldenrod;
+  box-shadow: 5px 5px 5px 5px darkgray;
+  /* margin: 20px; */
+}
+
+#create-form {
+  /* border: 2px solid red; */
+  height: 100%;
+  width: 100%;
+  /* align-content: space-between; */
+  justify-self: center;
+}
+
+.create-header {
+  background-color: white;
+  width: 100%;
+  /* border: 2px solid blue; */
+  border-bottom: 2px solid goldenrod;
+  height: 40px;
+  font-size: small;
+  display: flex;
+  justify-content: space-between;  
+}
+
+.create-heading {
+  position: relative;
+  left: 10px;
+  align-self: center;
+}
+
+.create-close {
+  position: relative;
+  width: 20px;
+  right: 10px;
+  align-self: center;
+  font-size: x-large;
+}
+
+.create-close:hover {
+  background-color: crimson;
+  box-shadow: 2px 2px 2px 2px gray;
+}
+
+.create-content {
+  /* border: 2px solid blue; */
+  height: 356px;
+  /* width: 99%; */
+}
+
+.create-title {
+  width: 99%;
+  resize: none;
+}
+
+.create-title:focus {
+  background-color: antiquewhite;
+}
+
+.create-body {
+  width: 99%;
+  height: 270px;
+  resize: none;
+}
+
+.create-body:focus {
+  background-color: antiquewhite;
+}
+
+.create-date {
+  display: flex;
+  position: relative;
+  top: 8px;
+  /* background-color: goldenrod; */
+}
+
+.create-due_input {
+  position: relative;
+  left: 20px;
+}
+
+.create-due {
+  position: relative;
+  left: 10px;
+}
+
+.create-new_todo-submit {
+  position: relative;
+  bottom: 12px;
+  left: 500px;
+  background-color: #006241;
+}
+/* 
+#project-window {
+  border: 2px solid black;
+  position: relative;
+  left: 950px;
+  bottom: 400px;
+  height: 400px;
+  width: 400px;
+  display: grid;
+} */
