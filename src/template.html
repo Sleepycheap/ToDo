@@ -11,31 +11,6 @@
 <body>
   <div id="container">
 
-    <div id="new-window">
-      <form id="create-form">
-        <div class="create-header">
-          <h2 class="create-heading">Create a new task</h2>
-          <div class="create-close">x</div>
-        </div>
-
-        <div class="create-content">
-          <div class="create-entry">
-            <textarea class="create-title" placeholder="Title: Wash Dishes" name="new-todo" maxlength="40"
-              required></textarea>
-            <textarea class="create-body" placeholder="Description: Check all rooms for dishes, hand wash etc."
-              name="new-todo"></textarea>
-            <div class="create-date">
-              <div class="create-due">Due Date:</div>
-              <input type="date" class="create-due_input" name="new-todo" required>
-            </div>
-          </div>
-          <input type="submit" class="create-new_todo-submit" value="Add To Do">
-        </div>
-      </form>
-
-    </div>
-
-
     <div id="title-bar">
       <i class="fa-solid fa-table-list"></i>
       <div id="title">ToDo List</div>
@@ -55,46 +30,93 @@
       <div id="created-tasks">
         <ul id="task-list">
           <!-- <li id="task-card"><button type="button" class="clear-task"></button>
-            <p class="task-p">Test Task</p>
-          </li> -->
-          <!-- <li id="task-card">
-            <button type="button" class="clear-task"></button>
-            <p class="task-p">Test Test</p>
+            <button type="button" class="tsk-card">Test Task</button>
           </li> -->
         </ul>
       </div>
 
-      <div id="task-div">
+      <!-- <div id="task-div">
         <form id="create-task">
           <label for="task"></label>
           <input type="text" id="task" name="task">
         </form>
         <button form="create-task" type="submit" class="create">Add</button>
         <button form="create-task" type="reset" class="cancel">Cancel</button>
-      </div>
+      </div> -->
+    </div>
 
+    <div id="task-details">
+      <h4>Task Details</h4>
+      <div class="details-cancel"><button type="button">X</button></div>
+      <div class="details">
+        <!-- <p id="detail-title">Title: Test Task</p>
+        <p id="detail-desc">Description: Get all of your other tasks done</p>
+        <p id="detail-prio">Priority: Low</p>
+        <p id="detail-due">Due Date: Today</p> -->
+      </div>
     </div>
 
     <div id="info-column">
       <div id="options-list">
-        <button type="button" class="inbox list">Inbox</button>
+        <button type="button" class="list">Inbox</button>
         <button type="button" class="list">Today</button>
         <button type="button" class="list">This Week</button>
         <button type="button" class="list">Important</button>
         <button type="button" class="list">Completed</button>
       </div>
 
+      <div id="new-window">
+        <form id="create-form">
+          <div class="create-header">
+            <h2 class="create-heading">Create a new task</h2>
+            <div class="create-close"><button type="button" class="cancel-task">X</button></div>
+          </div>
+
+          <div class="create-content">
+            <div class="create-entry">
+              <textarea class="create-title" placeholder="Title: Wash Dishes" name="new-todo-title" maxlength="40"
+                required></textarea>
+              <textarea class="create-body" placeholder="Description: Check all rooms for dishes, hand wash etc."
+                name="new-todo-body"></textarea>
+              <div class="create-date">
+                <div class="create-due">Due Date:</div>
+                <label for="create-due_input"></label>
+                <input type="date" class="create-due_input" name="new-todo-date" required>
+              </div>
+              <div class="project-check">
+                <input type="checkbox" id="assign-to-project" name="assign-to-project">
+                <label for="assign-to-project">Create Project?</label>
+              </div>
+              <div class="priority">
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priorityLevel">
+                  <option value="Low">Low</option>
+                  <option value="Middle">Middle</option>
+                  <option value="HIgh">High</option>
+                </select>
+              </div>
+            </div>
+            <label for="create-new_todo-submit"></label>
+            <input type="submit" class="create-new_todo-submit">
+          </div>
+        </form>
+      </div>
+
       <div id="projects-section">
         <h1 class="project-title">Projects</h1>
         <div id="projects">
-          <!-- <button type="button" class="add"><i class="fa-solid fa-plus" id="project-add"></i>Add Project</button> -->
+          <ul id="projects-list">
+            <!-- <li id="project-card"><button type="button" class="clear-task"></button>
+              <button type="button" class="prj-card">Test Task</button>
+            </li> -->
+          </ul>
         </div>
 
-        <form id="create-project">
+        <!-- <form id="create-project">
           <label for="project">Project Name:</label>
           <input type="text" id="project-name" name="projectName" required>
           <button form="create-project" type="submit" class="createP">Add</button>
-        </form>
+        </form> -->
       </div>
     </div>
 

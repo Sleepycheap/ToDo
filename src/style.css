@@ -20,12 +20,14 @@
 }
 
 #title-bar {
+  /* position: relative; */
   display: flex;
   grid-column-start: left;
   grid-column-end: right;
   background: linear-gradient(to right, #212529, #36454f, #71797E);
   color: white;
   align-items: center;
+  /* z-index: 1; */
 }
 
 #title {
@@ -40,6 +42,8 @@
 } */
 
 #task-content {
+  /* position: relative; */
+  /* z-index: 2; */
   grid-row-start: middle;
   grid-row-end: end;
   grid-column-start: content;
@@ -54,18 +58,22 @@
 }
 
 #info-column {
+  /* position: relative; */
+  /* z-index: 3; */
   display: grid;
   grid-template-rows: [info-start] 400px [info-mid] 50px [info-end];
   grid-row-start: middle;
   grid-row-end: end;
   grid-column-end: content;
   background-color: lightgray;
+  
 }
 
 #options-list {
   display: grid;
   padding: 20px;
   gap: 20px;
+  /* width: 100%; */
   /* filter: blur(10px); */
 }
 
@@ -137,7 +145,13 @@ button.list {
   cursor: pointer;
 }
 
-button:hover {
+button.list:hover {
+  background-color: whitesmoke;
+  border: none;
+  box-shadow: 7px 7px #848884;
+}
+
+button.clear-task:hover {
   background-color: whitesmoke;
   border: none;
   box-shadow: 7px 7px #848884;
@@ -196,22 +210,42 @@ input#task {
 }
 
 #created-tasks {
-  padding: 0;
+  /* border: 2px solid black; */
   margin: 0;
   display: flex;
-  gap: 10px;
+  gap: 0px;
   grid-row-start: content-mid;
   grid-column-start: mid;
   justify-self: center; 
   width: 600px;
 }
 
-#task-card {
+#task-list {
+  /* border: 2px solid black; */
+  /* padding-bottom: 20px; */
+}
+
+.task-card {
   /* display: none; */
   display: flex;
-  /* border: 2px solid black; */
+  border: none;
   height: 50px;
-  /* align-content: center; */
+  align-content: center;
+  justify-content: center;
+  padding-bottom: 40px;
+  /* background-color: #006241; */
+}
+
+.tsk-card {
+  border: none;
+  display: flex;
+  align-items: center;
+  width: 550px;
+  justify-content: center;
+  font-size: large;
+  background-color: lightgray;
+  /* border-bottom: 2px solid goldenrod; */
+  /* color: red; */
 }
 
 .task-p {
@@ -230,9 +264,12 @@ input#task {
   cursor: pointer;
 }
 
-#task-card:hover {
+.task-card:hover {
   background-color: lightgray;
-  box-shadow: 7px 7px whitesmoke;
+  box-shadow: 4px 4px 4px black;
+  transform: scale(1.05);
+  /* width: 50%; */
+  /* height: 15px; */
 }
 
 /* #task-add:hover {
@@ -244,13 +281,14 @@ input#task {
   border: 2px solid black;
 } */
 
-ul {
+ul#task-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
   display: block;
   gap: 10px;
 }
+
 
 /* .clear-task */
 
@@ -261,9 +299,85 @@ li {
   
 }
 
-li:hover {
+/* li:hover {
   background-color: lightgrey;
   box-shadow: 7px 7px whitesmoke;
+} */
+
+#task-details {
+  display: none;
+  /* gap: 10px; */
+  background-color: lightgray;
+  width: 580px;
+  position: absolute;
+  border-right: 5px solid goldenrod;
+  left: 835px;
+  bottom: 50vh;
+  height: 130px;
+  align-content: center;
+  padding-left: 10px;
+  background-color: lightgrey;
+  box-shadow: 7px 7px darkgray;
+}
+
+.details {
+  /* background-color: black; */
+}
+
+h4 {
+  position: absolute;
+  left: 40px;
+  bottom: 82px;
+  border-bottom: 2px solid goldenrod;
+  width: 80%; 
+}
+
+.details-cancel button {
+  background-color: red;
+  position: relative;
+  top: 6px;
+  right: 2px;
+}
+
+#detail-title {
+  position: relative;
+  top: 20px;
+  /* border-bottom: 2px solid goldenrod; */
+  left: 6px;
+  width: 30%;
+  height: 20px;
+  /* right: 200px; */
+}
+
+#detail-desc {
+  position: relative;
+  left: 160px;
+  top: 20px;
+  /* border-bottom: 2px solid goldenrod; */
+  height: 20px;
+  /* overflow:auto; */
+  /* width: 7/0%; */
+}
+
+#detail-prio {
+  position: relative;
+  top: 60px;
+  right: 360px;
+}
+
+#detail-due {
+  position: relative;
+  top: 60px;
+  right: 140px;
+}
+
+
+
+#task-details p {
+  /* font-size: medium;
+  border-bottom: black 2px solid; */
+  /* width: 200px; */
+  /* left: 5px; */
 }
 
 #task-div {
@@ -285,21 +399,58 @@ li:hover {
   background-color: #006241;
 }
 
+#projects {
+  width: 200px;
+  /* border: 2px solid red; */
+  grid-row-start: project-start;
+  /* align-content: center; */
+  /* justify-content: center; */
+}
+
 #projects-section {
  /* border: 2px solid black; */
  display: grid;
- grid-template-rows: [project-title] 50px [project-start] 125px [project-mid];
+ grid-template-rows: [project-title] 50px [project-start] 250px [project-mid];
 }
 
-ul#projects-list {
+#projects-list {
   display: block;
-  position: relative;
-  bottom: 240px;
-  justify-self: center;
-  height: 280px;
+  /* border: 2px solid blue; */
+  /* position: relative; */
+  /* bottom: 240px; */
+  /* justify-self: center; */
+  /* height: 280px; */
   /* border: 2px solid black; */
   width: 200px;
+  /* justify-items: center; */
+  /* align-self: center; */
   /* padding-bottom: 10px; */
+}
+
+#project-card {
+  background-color: whitesmoke;
+  position: relative;
+  right: 50px;
+  display: flex;
+  /* border: 2px solid black; */
+  width: 200px;
+  justify-self: center;
+
+}
+
+.prj-card {
+  position: relative;
+  left: 20px;
+  width: 130px;
+  border: none;
+  /* padding: 5px; */
+}
+
+
+ul#projects-list {
+  list-style-type: none;
+  /* border: 2px solid black; */
+  /* grid-row-start: project-start; */
 }
 
 li.project-name {
@@ -318,6 +469,7 @@ li.project-name:hover {
 #new-window {
   display: none;
   position: absolute;
+  z-index: 100;
   /* border: 2px solid black; */
   right: 480px;
   top: 30vh;
@@ -410,8 +562,8 @@ li.project-name:hover {
 
 .create-new_todo-submit {
   position: relative;
-  bottom: 12px;
-  left: 500px;
+  bottom: 50px;
+  left: 525px;
   background-color: #006241;
 }
 /* 
@@ -424,3 +576,22 @@ li.project-name:hover {
   width: 400px;
   display: grid;
 } */
+/* 
+#assign-to-project {
+  position: relative;
+  right: 200px;
+} */
+
+.project-check {
+  /* display: flex; */
+  position: relative;
+  left: 220px;
+  bottom: 12px;
+}
+
+.priority {
+  position: relative;
+  bottom: 30px;
+  left: 375px;
+  /* width: 2px; */
+}
