@@ -1,5 +1,5 @@
 import "./style.css"
-import { createTask, getTaskName, clearTask, loadPage, createProject, getDetailsStart, closeDetails } from "./Utils/tasks.js";
+import { createTask, getTaskName, clearTask, loadPage, createProject, getDetailsStart, closeDetails, displayToday, displayInbox } from "./Utils/tasks.js";
 
 // const clear = document.querySelector('.clear-task');
 // const card = document.querySelector('.prj-card');
@@ -9,6 +9,24 @@ import { createTask, getTaskName, clearTask, loadPage, createProject, getDetails
 
 createTask();
 loadPage();
+
+const inbox = document.querySelector('#inbox');
+const today = document.querySelector('#today');
+const important = document.querySelector('#important');
+inbox.addEventListener('click', (e) => {
+  e.preventDefault();
+  displayInbox();
+})
+
+today.addEventListener('click', (e) => {
+  e.preventDefault();
+  displayToday();
+})
+
+important.addEventListener('click', (e) => {
+  e.preventDefault();
+  console.log('important');
+})
 
 // card.addEventListener('click', (e) => {
 //   e.preventDefault();

@@ -29,7 +29,7 @@
 
       <div id="created-tasks">
         <ul id="task-list">
-          <!-- <li id="task-card"><button type="button" class="clear-task"></button>
+          <!-- <li class="task-card"><button type="button" class="clear-task"></button>
             <button type="button" class="tsk-card">Test Task</button>
           </li> -->
         </ul>
@@ -49,20 +49,18 @@
       <h4>Task Details</h4>
       <div class="details-cancel"><button type="button">X</button></div>
       <div class="details">
-        <!-- <p id="detail-title">Title: Test Task</p>
+        <p id="detail-title">Title: Test Task</p>
         <p id="detail-desc">Description: Get all of your other tasks done</p>
         <p id="detail-prio">Priority: Low</p>
-        <p id="detail-due">Due Date: Today</p> -->
+        <p id="detail-due">Due Date: Today</p>
       </div>
     </div>
 
     <div id="info-column">
       <div id="options-list">
-        <button type="button" class="list">Inbox</button>
-        <button type="button" class="list">Today</button>
-        <button type="button" class="list">This Week</button>
-        <button type="button" class="list">Important</button>
-        <button type="button" class="list">Completed</button>
+        <button type="button" class="list" id="inbox">Inbox</button>
+        <button type="button" class="list" id="today">Today</button>
+        <button type="button" class="list" id="important">Important</button>
       </div>
 
       <div id="new-window">
@@ -92,7 +90,7 @@
                 <select id="priority" name="priorityLevel">
                   <option value="Low">Low</option>
                   <option value="Middle">Middle</option>
-                  <option value="HIgh">High</option>
+                  <option value="High">High</option>
                 </select>
               </div>
             </div>

@@ -34,29 +34,42 @@ export const createTask = () => {
 
 export const loadPage = () => {
   // Loads the Page
+  const pl = document.querySelector('#projects-list');
   const ul = document.querySelector('#task-list');
   const dueDatePre = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
+  const dueDate = dueDatePre.toLocaleDateString();
   if (!localStorage.getItem(JSON.stringify('Test Task'))) {
     const testTask = {
       title: 'Test Task',
       description: 'Get all your other tasks done',
-      dueDate: dueDatePre,
+      dueDate: dueDate,
       priority: 'Low' 
     };
     localStorage.setItem(JSON.stringify(testTask.title), JSON.stringify(testTask));
   }
   const tasks = localStorage;
   for (let i = 0; i < tasks.length; i++) {
+    const taskName = localStorage.key(i);
+    const item = localStorage.getItem(taskName);
+    const name = JSON.parse(item);
     const li = document.createElement('li');
-    li.id = 'task-card';
-    ul.appendChild(li);
+    if (name.project === 'true') {
+      li.id = 'project-card';
+      pl.appendChild(li);    
+    } else {
+      li.classList.add('task-card');
+      ul.appendChild(li);
+    }
     const button = document.createElement('button');
     button.setAttribute('type', 'button');
     button.classList.add('clear-task');
     li.appendChild(button);
     const card = document.createElement('button');
-    card.classList.add('tsk-card');
-    const taskName = localStorage.key(i);
+    if (name.project === 'true') {
+      card.classList.add('prj-card')
+    } else {
+      card.classList.add('tsk-card');
+    }
     const value = JSON.parse(taskName)
     card.textContent = value;
     li.appendChild(card);
@@ -64,11 +77,23 @@ export const loadPage = () => {
       e.preventDefault();
       clearTask(value, ul, li);
     })
-    card.addEventListener('click', (e) => {
-      e.preventDefault();
-      getDetails();
-    })
   }
+  const taskCards = document.querySelectorAll('.tsk-card');
+  taskCards.forEach(item => {
+    item.addEventListener('click', (e) => {
+      console.log(`item: ${item.textContent}`);
+      e.preventDefault();
+      getDetailsProjects(item);
+    })
+  })
+  const projCards = document.querySelectorAll('.prj-card');
+  projCards.forEach(item => {
+    item.addEventListener('click', (e) => {
+      console.log(`item: ${item.textContent}`);
+      e.preventDefault();
+      getDetailsProjects(item);
+    })
+  })
 }
 
 const dueDatePre = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000);
@@ -96,7 +121,7 @@ export const getTaskName = () => {
     console.log(`task already created`);
   } else {
     localStorage.setItem(JSON.stringify(newTask.title), JSON.stringify(newTask));
-    console.log(`local Storage: ${localStorage}`);
+    // console.log(`local Storage: ${localStorage}`);
     const taskContent = document.querySelector('#task-content');
     const options = document.querySelector('#options-list');
     const projects = document.querySelector('#projects');
@@ -111,36 +136,36 @@ export const getTaskName = () => {
     taskAdd.style.display = 'grid';
     const name = newTask.title;
     const checked = check.checked;
-    // if (check.checked === false) {
-    //   console.log('FASLE');
-    // } else if(check.checked === true) {
-    //   console.log('TRUEEE');
-    // };
+    const prio = newTask.priority;
     if (checked) {
-      addToProjects(name);
+      addToProjects(name, prio);
       console.log('checked');
     } else if (!checked){
-      addTask(name, newTask);
+      addTask(name, prio);
       console.log('not checked');
     }
-    // taskAdd function
   }
 }
 
-export const addTask = (name, newTask) => {
+export const addTask = (name, prio) => {
   // Add task to Container
   const content = document.querySelector('#container');
   const ul = document.querySelector('#task-list');
   const li = document.createElement('li');
-  li.id = 'task-card';
+  li.classList.add('task-card');
   ul.appendChild(li);
   const clear = document.createElement('button');
   clear.classList.add('clear-task');
   clear.setAttribute('type', 'button');
+  console.log(`prio: ${prio}`);
   li.appendChild(clear);
   const create = document.createElement('button');
   create.classList.add('tsk-card');
   create.textContent = name;
+  if (prio === 'High') {
+    create.style.backgroundColor = 'red';
+    create.style.color = 'white';
+  }
   li.appendChild(create);
   clear.addEventListener('click', (e) => {
     e.preventDefault();
@@ -152,7 +177,7 @@ export const addTask = (name, newTask) => {
   })
 }
 
-export const addToProjects = (name) => {
+export const addToProjects = (name, prio) => {
   const ul = document.querySelector('#projects-list');
   const li = document.createElement('li');
   li.id = 'project-card';
@@ -161,14 +186,26 @@ export const addToProjects = (name) => {
   clear.classList.add('clear-task');
   clear.setAttribute('type', 'button');
   li.appendChild(clear);
-  const card = document.createElement('button');
-  card.classList.add('prj-card');
-  card.textContent = name;
-  card.setAttribute('type', 'button');
-  li.appendChild(card);
+  const create = document.createElement('button');
+  create.classList.add('prj-card');
+  if (prio === 'High') {
+    create.style.backgroundColor = 'red';
+    create.style.color = 'white';
+  }
+  create.textContent = name;
+  li.appendChild(create);
   clear.addEventListener('click', (e) => {
     e.preventDefault();
     clearTask(name, ul, li);
+  })
+
+  const cards = document.querySelectorAll('.prj-card');
+  cards.forEach(item => {
+    item.addEventListener('click', (e) => {
+      console.log(`card: ${item.textContent}`);
+      e.preventDefault();
+      getDetailsProjects(item);
+    })
   })
 }
 
@@ -235,37 +272,64 @@ export const getDetailsStart = () => {
   details.appendChild(detailDue);
 }
 
-export const getDetails = () => {
+export const getDetails = (item) => { 
   // Build details window for new tasks
-  const card = document.querySelector('.tsk-card');
-  const closest = card.closest('#task-card');
+  console.log(`Name: ${item}`);
+  const preName = localStorage.getItem(JSON.stringify(item));
+  console.log(`preNAme: ${preName}`);
+  const newTask = JSON.parse(preName);
+  console.log(`task: ${newTask}`);
+  const tasks = document.querySelector('#created-tasks');
+  tasks.style.display = 'none';
+  const details = document.querySelector('#task-details');
+  details.style.display = 'flex';
+  const detailTitle = document.querySelector('#detail-title');
+  detailTitle.id = 'detail-title';
+  detailTitle.textContent =  `Title: ${newTask.title}`;
+  const detailDesc = document.querySelector('#detail-desc');
+  detailDesc.id = 'detail-desc';
+  detailDesc.textContent = `Description: ${newTask.description}`;
+  const detailPrio = document.querySelector('#detail-prio');
+  detailPrio.id = 'detail-prio';
+  detailPrio.textContent = `Priority: ${newTask.priority}`;
+  const detailDue = document.querySelector('#detail-due');
+  detailDue.id = 'detail-due';
+  detailDue.textContent = `Due Date: ${newTask.dueDate}`;
+  const cancel = document.querySelector('.details-cancel');
+  cancel.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeDetails();
+  })
+}
 
-  // const name = card.value; 
-  
-  // const name = closest.textContent;
-  console.log(`name: ${closest.textContent}`);
-  const newTask = localStorage.getItem(JSON.stringify(name));
-  
-  // const tasks = document.querySelector('#created-tasks');
-  // tasks.style.display = 'none';
-  // const details = document.querySelector('#task-details');
-  // details.style.display = 'flex';
-  // const detailTitle = document.createElement('p');
-  // detailTitle.id = 'detail-title';
-  // detailTitle.textContent =  `Title: ${newTask.title}`;
-  // details.appendChild(detailTitle);
-  // const detailDesc = document.createElement('p');
-  // detailDesc.id = 'detail-desc';
-  // detailDesc.textContent = `Description: ${newTask.description}`;
-  // details.appendChild(detailDesc);
-  // const detailPrio = document.createElement('p');
-  // detailPrio.id = 'detail-prio';
-  // detailPrio.textContent = `Priority: ${newTask.priority}`;
-  // details.appendChild(detailPrio);
-  // const detailDue = document.createElement('p');
-  // detailDue.id = 'detail-due';
-  // detailDue.textContent = `Due Date: ${newTask.dueDate}`;
-  // details.appendChild(detailDue);
+export const getDetailsProjects = (item) => {
+  const name = item.textContent;
+  const preName = localStorage.getItem(JSON.stringify(name));
+  console.log(`preName: ${preName}`);
+  const newProject = JSON.parse(preName);
+  console.log(`test: ${newProject}`);
+  const tasks = document.querySelector('#created-tasks');
+  tasks.style.display = 'none';
+  const details = document.querySelector('#task-details');
+  details.style.display = 'flex';
+  const detailTitle = document.querySelector('#detail-title');
+  detailTitle.id = 'detail-title';
+  detailTitle.textContent = `Title: ${newProject.title}`;
+  const detailDesc = document.querySelector('#detail-desc');
+  detailDesc.id = 'detail-desc';
+  detailDesc.textContent = `Description: ${newProject.description}`
+  const detailPrio = document.querySelector('#detail-prio');
+  detailPrio.id = 'detail-prio';
+  detailPrio.textContent = `Priority: ${newProject.priority}`;
+  const detailDue = document.querySelector('#detail-due');
+  detailDue.id = 'detail-due';
+  detailDue.textContent = `Due Date: ${newProject.dueDate}`;
+  const cancel = document.querySelector('.details-cancel');
+  cancel.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeDetails();
+  })
+
 }
 
 export const closeDetails = () => {
@@ -276,4 +340,56 @@ export const closeDetails = () => {
   tasks.style.display =  'flex';
 }
 
+export const displayInbox = () => {
+  loadPage();
+}
 
+export const displayToday = () => {
+  const ls = localStorage;
+  const date = new Date(Date.now());
+  const dueDate = date.toLocaleDateString();
+  Object.keys(ls).forEach(key => {
+    const d = localStorage.getItem(key);
+    const parsed = JSON.parse(d)
+    if (parsed.dueDate === dueDate && parsed.project === true) {
+      const name = parsed.title;
+      addToProjects(name, parsed.priority)
+    } else if (parsed.dueDate === dueDate && parsed.project === false) {
+      const name = parsed.title;
+      addTask(name, parsed.priority);
+    }
+  });
+}
+
+
+// export const addToProjects = (name, prio) => {
+//   const ul = document.querySelector('#projects-list');
+//   const li = document.createElement('li');
+//   li.id = 'project-card';
+//   ul.appendChild(li);
+//   const clear = document.createElement('button');
+//   clear.classList.add('clear-task');
+//   clear.setAttribute('type', 'button');
+//   li.appendChild(clear);
+//   const create = document.createElement('button');
+//   create.classList.add('prj-card');
+//   if (prio === 'High') {
+//     create.style.backgroundColor = 'red';
+//     create.style.color = 'white';
+//   }
+//   create.textContent = name;
+//   li.appendChild(create);
+//   clear.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     clearTask(name, ul, li);
+//   })
+
+//   const cards = document.querySelectorAll('.prj-card');
+//   cards.forEach(item => {
+//     item.addEventListener('click', (e) => {
+//       console.log(`card: ${item.textContent}`);
+//       e.preventDefault();
+//       getDetailsProjects(item);
+//     })
+//   })
+// }
