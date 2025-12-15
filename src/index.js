@@ -13,20 +13,20 @@ loadPage();
 const inbox = document.querySelector('#inbox');
 const today = document.querySelector('#today');
 const important = document.querySelector('#important');
-inbox.addEventListener('click', (e) => {
-  e.preventDefault();
-  displayInbox();
-})
+// inbox.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   displayInbox();
+// })
 
-today.addEventListener('click', (e) => {
-  e.preventDefault();
-  displayToday();
-})
+// today.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   displayToday();
+// })
 
-important.addEventListener('click', (e) => {
-  e.preventDefault();
-  console.log('important');
-})
+// important.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   console.log('important');
+// })
 
 // card.addEventListener('click', (e) => {
 //   e.preventDefault();

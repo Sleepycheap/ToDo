@@ -340,17 +340,20 @@ export const closeDetails = () => {
   tasks.style.display =  'flex';
 }
 
-export const displayInbox = () => {
-  loadPage();
-}
+// export const displayInbox = () => {
+
+//   loadPage();
+// }
 
 export const displayToday = () => {
   const ls = localStorage;
   const date = new Date(Date.now());
   const dueDate = date.toLocaleDateString();
+  console.log(`time: ${dueDate}`);
   Object.keys(ls).forEach(key => {
     const d = localStorage.getItem(key);
-    const parsed = JSON.parse(d)
+    const parsed = JSON.parse(d);
+    console.log(`parsed: ${parsed}`);
     if (parsed.dueDate === dueDate && parsed.project === true) {
       const name = parsed.title;
       addToProjects(name, parsed.priority)
